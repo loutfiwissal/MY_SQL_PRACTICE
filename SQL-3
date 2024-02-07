@@ -1,0 +1,178 @@
+Enter password: ***********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 18
+Server version: 8.0.36 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database centre_formation;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| centre_formation   |
+| information_schema |
+| isgi               |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (0.01 sec)
+
+mysql> use centre_formation;
+Database changed
+mysql> create table etudiant(
+    -> num_cin varchar(10),
+    -> nom varchar(45),
+    -> prenom varchar(45),
+    -> date_naissance date,
+    -> adresse varchar(45),
+    -> niveau varchar(45)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc centre_formation;
+ERROR 1146 (42S02): Table 'centre_formation.centre_formation' doesn't exist
+mysql> desc etudiant;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| num_cin        | varchar(10) | YES  |     | NULL    |       |
+| nom            | varchar(45) | YES  |     | NULL    |       |
+| prenom         | varchar(45) | YES  |     | NULL    |       |
+| date_naissance | date        | YES  |     | NULL    |       |
+| adresse        | varchar(45) | YES  |     | NULL    |       |
+| niveau         | varchar(45) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> create table inscription(
+    -> code int,
+    -> num_cine varchar(10),
+    -> typeCours varchar(45)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc inscription;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| code      | int         | YES  |     | NULL    |       |
+| num_cine  | varchar(10) | YES  |     | NULL    |       |
+| typeCours | varchar(45) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table etudiant
+    -> add column ville varchar(45);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc etudiant;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| num_cin        | varchar(10) | YES  |     | NULL    |       |
+| nom            | varchar(45) | YES  |     | NULL    |       |
+| prenom         | varchar(45) | YES  |     | NULL    |       |
+| date_naissance | date        | YES  |     | NULL    |       |
+| adresse        | varchar(45) | YES  |     | NULL    |       |
+| niveau         | varchar(45) | YES  |     | NULL    |       |
+| ville          | varchar(45) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> create table session(
+    -> code int,
+    -> nomSess varchar(45),
+    -> dateDebut date,
+    -> datefin varchar(45)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc session;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| code      | int         | YES  |     | NULL    |       |
+| nomSess   | varchar(45) | YES  |     | NULL    |       |
+| dateDebut | date        | YES  |     | NULL    |       |
+| datefin   | varchar(45) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> create table formation(
+    -> codeforme int,
+    -> tittreform varchar(45),
+    -> dureeform double,
+    -> prixforme double,
+    -> session_codeSess int
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc formation;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| codeforme        | int         | YES  |     | NULL    |       |
+| tittreform       | varchar(45) | YES  |     | NULL    |       |
+| dureeform        | double      | YES  |     | NULL    |       |
+| prixforme        | double      | YES  |     | NULL    |       |
+| session_codeSess | int         | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table catalogue(
+    -> codespec int,
+    -> codeform int
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc catalogue;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| codespec | int  | YES  |     | NULL    |       |
+| codeform | int  | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table specialite(
+    -> codespect int,
+    -> nomspect varchar(45),
+    -> descspect varchar(45)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc specialite;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| codespect | int         | YES  |     | NULL    |       |
+| nomspect  | varchar(45) | YES  |     | NULL    |       |
+| descspect | varchar(45) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> show tables;
++----------------------------+
+| Tables_in_centre_formation |
++----------------------------+
+| catalogue                  |
+| etudiant                   |
+| formation                  |
+| inscription                |
+| session                    |
+| specialite                 |
++----------------------------+
+6 rows in set (0.01 sec)
