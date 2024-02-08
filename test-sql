@@ -292,4 +292,72 @@ mysql> desc stagiaire;
 +-------+-------------+------+-----+---------+-------+
 2 rows in set (0.00 sec)
 
-mysql>
+mysql>alter table stagiaire
+    -> add age int check(age>= 18 and age <=30);
+Query OK, 2 rows affected (0.18 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | varchar(10) | YES  | UNI | NULL    |       |
+| nom   | varchar(10) | NO   |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+mysql> alter table stagiaire
+    -> add column ville varchar(10);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> desc stagiaire;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | varchar(10) | YES  | UNI | NULL    |       |
+| nom     | varchar(10) | NO   |     | NULL    |       |
+| age     | int         | YES  |     | NULL    |       |
+| filiere | varchar(10) | YES  |     | NULL    |       |
+| ville   | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+mysql> alter table stagiaire
+    -> add column date_insc date;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc stagiaire;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | varchar(10) | YES  | UNI | NULL    |       |
+| nom       | varchar(10) | NO   |     | NULL    |       |
+| age       | int         | YES  |     | NULL    |       |
+| filiere   | varchar(10) | YES  |     | NULL    |       |
+| ville     | varchar(10) | YES  |     | NULL    |       |
+| date_insc | date        | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+mysql> alter table stagiaire
+    -> modify ville varchar(10) default 'Marrakech';
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> alter table stagiaire
+    -> modify date_insc date default (current_date());
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc satgiaire;
+ERROR 1146 (42S02): Table 'isgi.satgiaire' doesn't exist
+mysql> desc stagiaire;
++-----------+-------------+------+-----+-----------+-------------------+
+| Field     | Type        | Null | Key | Default   | Extra             |
++-----------+-------------+------+-----+-----------+-------------------+
+| id        | varchar(10) | YES  | UNI | NULL      |                   |
+| nom       | varchar(10) | NO   |     | NULL      |                   |
+| age       | int         | YES  |     | NULL      |                   |
+| filiere   | varchar(10) | YES  |     | NULL      |                   |
+| ville     | varchar(10) | YES  |     | Marrakech |                   |
+| date_insc | date        | YES  |     | curdate() | DEFAULT_GENERATED |
++-----------+-------------+------+-----+-----------+-------------------+
+6 rows in set (0.00 sec)
